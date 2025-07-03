@@ -19,6 +19,7 @@ const BookList = () => {
   };
 
   const addNewBookHandler = (event) => {
+    event.preventDefault();
     setNewBook(event.target.value);
   };
 
@@ -44,7 +45,7 @@ const BookList = () => {
         <div className={styles.pageBanner}>
           <h1 className={styles.title}>Book Collections</h1>
           <p>Books</p>
-          <form className={styles.searchBooks} onSubmit={(e) => e.preventDefault()}>
+          <form className={styles.searchBooks} onSubmit={addNewBookHandler}>
             <input
               type="text"
               placeholder="Search books..."
