@@ -11,6 +11,7 @@ const BookList = () => {
 
   const [books, setBooks] = useState(bookList);
   const [newBook, setNewBook] = useState("");
+  const [search, setSearch] = useState("");
 
   const handleDelete = (clickedIndex) => {
     const filteredBooks = books.filter((_, index) => index !== clickedIndex);
@@ -18,17 +19,24 @@ const BookList = () => {
   };
 
   const addNewBookHandler = (event) => {
-    const newBook = event.target.value;
-    setNewBook(newBook);
+    setNewBook(event.target.value);
   };
 
   const submitNewBook = (event) => {
     event.preventDefault();
-    if (newBook !== ""){
-    setBooks((prevBooks) => [...prevBooks, newBook]);
+    if (newBook.trim() !== "") {
+      setBooks((prevBooks) => [...prevBooks, newBook.trim()]);
+      setNewBook("");
     }
-    setNewBook("");
   };
+
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const filteredBooks = books.filter((book) =>{
+    return book.toLowerCase().includes(search.toLowerCase());
+  });
 
   return (
     <div className={styles.wrapper}>
@@ -36,8 +44,13 @@ const BookList = () => {
         <div className={styles.pageBanner}>
           <h1 className={styles.title}>Book Collections</h1>
           <p>Books</p>
-          <form className={styles.searchBooks}>
-            <input type="text" placeholder="Search books..." />
+          <form className={styles.searchBooks} onSubmit={(e) => e.preventDefault()}>
+            <input
+              type="text"
+              placeholder="Search books..."
+              value={search}
+              onChange={handleSearch}
+            />
           </form>
         </div>
       </header>
@@ -45,10 +58,12 @@ const BookList = () => {
       <div className={styles.bookList}>
         <h2 className={styles.subtitle}>Books to Read</h2>
         <ul>
-          {books.map((book, index) => (
+          {filteredBooks.map((book, index) => (
             <li key={index}>
               <span className={styles.name}>{book}</span>
-              <span onClick={() => handleDelete(index)} className={styles.delete}>delete</span>
+              <span onClick={() => handleDelete(index)} className={styles.delete}>
+                delete
+              </span>
             </li>
           ))}
         </ul>
@@ -61,7 +76,7 @@ const BookList = () => {
           type="text"
           placeholder="Add a book..."
         />
-        <button>Add</button>
+        <button type="submit">Add</button>
       </form>
     </div>
   );
