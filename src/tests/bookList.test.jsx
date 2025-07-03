@@ -59,7 +59,14 @@ test("test add new book form works", ()=>{
 
 test("test search book form works", () => {
   const searchBook = screen.getByPlaceholderText(/search books/i);
-  fireEvent.change(searchBook, { target: { value: "The Wise Man's Fear" } });
-  let presentBooks = screen.getAllByRole("listitem");
+  fireEvent.change(searchBook, { target: { value: "Kafka" } });
+  const presentBooks = screen.getAllByRole("listitem");
   expect(presentBooks).toHaveLength(1);
+});
+
+test("test search book form works", () => {
+  const searchBook = screen.getByPlaceholderText(/search books/i);
+  fireEvent.change(searchBook, { target: { value: "Niko's books" } });
+  const presentBooks = screen.getAllByRole("listitem");
+  expect(presentBooks).toHaveLength(0);
 });
