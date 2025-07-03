@@ -64,9 +64,9 @@ test("test search book form works", () => {
   expect(presentBooks).toHaveLength(1);
 });
 
-test("test search book form works", () => {
+test("test search book is invalid ", () => {
   const searchBook = screen.getByPlaceholderText(/search books/i);
   fireEvent.change(searchBook, { target: { value: "Niko's books" } });
-  const presentBooks = screen.getAllByRole("listitem");
+  const presentBooks = screen.queryAllByRole("listitem");
   expect(presentBooks).toHaveLength(0);
 });
