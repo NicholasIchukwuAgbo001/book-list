@@ -1,8 +1,11 @@
-const App = () => {
+import BookList from './components/BookList'
+
+function App() {
+
   return (
-    <div>
-      Hello Vite
-    </div>
+    <>
+      <BookList/>
+    </>
   )
 }
 
