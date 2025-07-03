@@ -35,8 +35,6 @@ test("test that 'books' collection is present", () => {
 });
 
 
-
-
 test("That the mock list displays on my screen", () => {
     const books= screen.getAllByRole("listitem");
     expect(books).toHaveLength(bookList.length);
@@ -44,7 +42,6 @@ test("That the mock list displays on my screen", () => {
 
 test("that i can delete a book", () => {
     const deleteBtn = screen.getAllByText(/delete/i);
-    // expect(deleteBtn).toBeTruthy();
     fireEvent.click(deleteBtn[0]);
     const books = screen.getAllByRole("listitem");
     expect(books).toHaveLength(bookList.length - 1);
@@ -59,3 +56,10 @@ test("test add new book form works", ()=>{
     const books = screen.getAllByRole("listitem")
     expect(books).toHaveLength(bookList.length + 1)
 })
+
+test("test search book form works", () => {
+  const searchBook = screen.getByPlaceholderText(/search books/i);
+  fireEvent.change(searchBook, { target: { value: "Kafka" } });
+  const presentBooks = screen.getAllByRole("listitem");
+  expect(presentBooks).toHaveLength(1);
+});
