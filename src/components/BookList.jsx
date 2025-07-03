@@ -24,8 +24,9 @@ const BookList = () => {
 
   const submitNewBook = (event) => {
     event.preventDefault();
-    if (!newBook.trim()) return
+    if (newBook !== ""){
     setBooks((prevBooks) => [...prevBooks, newBook]);
+    }
     setNewBook("");
   };
 
