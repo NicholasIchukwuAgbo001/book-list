@@ -18,12 +18,13 @@ const BookList = () => {
   };
 
   const addNewBookHandler = (event) => {
-    setNewBook(event.target.value);
+    const newBook = event.target.value;
+    setNewBook(newBook);
   };
 
   const submitNewBook = (event) => {
     event.preventDefault();
-    if (!newBook.trim()) return;
+    if (!newBook.trim()) return
     setBooks((prevBooks) => [...prevBooks, newBook]);
     setNewBook("");
   };
