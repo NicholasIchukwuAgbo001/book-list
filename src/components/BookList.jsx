@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const BookList = () => {
   const [books, setBooks] = useState(() => {
-    // Load from localStorage initially
     const savedBooks = localStorage.getItem("books");
     return savedBooks ? JSON.parse(savedBooks) : [];
   });
@@ -12,7 +11,6 @@ const BookList = () => {
   const [newBook, setNewBook] = useState("");
   const [search, setSearch] = useState("");
 
-  // Sync with localStorage whenever books change
   useEffect(() => {
     localStorage.setItem("books", JSON.stringify(books));
   }, [books]);
