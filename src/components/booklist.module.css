@@ -2,6 +2,8 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
 }
 
 .wrapper {
@@ -11,10 +13,9 @@ html, body {
   border-radius: 6px;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
-  padding: 80px 0 20px;
+  padding: 80px 0 140px; 
   overflow-y: auto;
   border: 1px solid lightgray;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -36,18 +37,6 @@ html, body {
 .pageBanner h1,
 .pageBanner p {
   margin: 10px 0;
-}
-
-.pageBanner input {
-  width: 90%;
-  max-width: 300px;
-  margin: 20px auto;
-  display: block;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-  color: #444;
 }
 
 .searchBooks input {
@@ -121,21 +110,29 @@ html, body {
 }
 
 .addBook {
-  position: sticky;
+  position: fixed;
   bottom: 0;
+  left: 0;
+  right: 0;
   background: white;
-  padding: 10px 20px;
+  padding: 12px 16px;
   display: flex;
   gap: 10px;
-  max-width: 750px;
-  width: 100%;
+  width: 90%;
+  max-width: 960px;
   margin: 0 auto;
   box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  border-top: 1px solid #ccc;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;  
 }
 
 .addBook input {
   flex: 1;
+  min-width: 200px;
+  max-width: 500px;
   padding: 10px;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -151,89 +148,68 @@ html, body {
   cursor: pointer;
   font-weight: 500;
   transition: background-color 0.2s ease;
+  white-space: nowrap;
 }
+
 
 .addBook button:hover {
   background-color: #1d4ed8;
 }
 
-@media screen and (max-width: 900px) {
-  .addBook {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 15px;
-    padding: 15px;
-    width: 90%;
-  }
-
-  .addBook button {
-    margin-top: 5px;
-  }
-
-  .delete {
-    margin-top: 8px;
-  }
-
-  .bookList,
-  .addBook,
-  .tabbedContent {
-    margin: 20px;
-  }
-
-  .pageBanner input {
-    max-width: 100%;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .wrapper {
-    margin: 10px;
-    padding: 10px 0;
-  }
-
-  .bookList{
-    padding-top: 120px;
-  }
-
-  .bookList li {
-    padding: 15px;
-    margin: 15px 5px;
-  }
-
-  .delete {
-    background-color: #111827;
-    float: none;
-    display: inline-block;
-    margin-top: 10px;
-  }
-
-  .pageBanner h1 {
-    font-size: 22px;
-  }
-
-  .pageBanner p {
-    font-size: 14px;
-  }
-
-  .addBook {
-    gap: 15px;
-    padding: 15px;
-  }
-
-  .addBook input {
-    font-size: 15px;
-  }
-
-  .addBook button {
-    font-size: 15px;
-  }
-
+@media screen and (max-width: 768px) {
   .title {
     font-size: 2rem;
   }
 
   .subtitle {
     font-size: 1.2rem;
+  }
+
+  .searchBooks input {
+    width: 80%;
+  }
+
+  .addBook {
+    align-items: stretch;
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .bookList {
+    margin: 20px;
+    padding-top: 120px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .pageBanner h1 {
+    font-size: 22px;
+  }
+
+ .addBook {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pageBanner p {
+    font-size: 14px;
+  }
+
+  .bookList li {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+    gap: 8px;
+  }
+
+  .delete {
+    align-self: flex-end;
+    margin-top: 5px;
+  }
+
+  .addBook input,
+  .addBook button {
+    font-size: 0.95rem;
   }
 }
 
