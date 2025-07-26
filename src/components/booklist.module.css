@@ -191,6 +191,10 @@ html, body {
     padding: 10px 0;
   }
 
+  .bookList{
+    padding-top: 120px;
+  }
+
   .bookList li {
     padding: 15px;
     margin: 15px 5px;
