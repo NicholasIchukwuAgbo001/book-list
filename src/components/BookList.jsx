@@ -1,25 +1,27 @@
 import styles from './booklist.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const BookList = () => {
-  const bookList = [
-    "Name of the Wind",
-    "The Wise Man's Fear",
-    "Kafka on the Shore",
-    "The Master and the Margarita"
-  ];
+  const [books, setBooks] = useState(() => {
+    // Load from localStorage initially
+    const savedBooks = localStorage.getItem("books");
+    return savedBooks ? JSON.parse(savedBooks) : [];
+  });
 
-  const [books, setBooks] = useState(bookList);
   const [newBook, setNewBook] = useState("");
   const [search, setSearch] = useState("");
 
+  // Sync with localStorage whenever books change
+  useEffect(() => {
+    localStorage.setItem("books", JSON.stringify(books));
+  }, [books]);
+
   const handleDelete = (clickedIndex) => {
-    const filteredBooks = books.filter((_, index) => index !== clickedIndex);
-    setBooks(filteredBooks);
+    setBooks((prevBooks) => prevBooks.filter((_, index) => index !== clickedIndex));
   };
 
   const addNewBookHandler = (event) => {
-    event.preventDefault();
     setNewBook(event.target.value);
   };
 
@@ -35,9 +37,9 @@ const BookList = () => {
     setSearch(event.target.value);
   };
 
-  const filteredBooks = books.filter((book) =>{
-    return book.toLowerCase().includes(search.toLowerCase());
-  });
+  const filteredBooks = books.filter((book) =>
+    book.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div className={styles.wrapper}>
@@ -45,7 +47,7 @@ const BookList = () => {
         <div className={styles.pageBanner}>
           <h1 className={styles.title}>Book Collections</h1>
           <p>Books</p>
-          <form className={styles.searchBooks} onSubmit={addNewBookHandler}>
+          <form className={styles.searchBooks} onSubmit={(e) => e.preventDefault()}>
             <input
               type="text"
               placeholder="Search books..."
@@ -59,14 +61,28 @@ const BookList = () => {
       <div className={styles.bookList}>
         <h2 className={styles.subtitle}>Books to Read</h2>
         <ul>
-          {filteredBooks.map((book, index) => (
-            <li key={index}>
-              <span className={styles.name}>{book}</span>
-              <span onClick={() => handleDelete(index)} className={styles.delete}>
-                delete
-              </span>
-            </li>
-          ))}
+          <AnimatePresence>
+            {filteredBooks.map((book, index) => (
+              <motion.li
+                key={book + index}
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.7, x: 50 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className={styles.listItem}
+              >
+                <span className={styles.name}>{book}</span>
+                <motion.span
+                  whileHover={{ scale: 1.2, color: "#e63946" }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => handleDelete(index)}
+                  className={styles.delete}
+                >
+                  delete
+                </motion.span>
+              </motion.li>
+            ))}
+          </AnimatePresence>
         </ul>
       </div>
 
@@ -77,9 +93,16 @@ const BookList = () => {
           type="text"
           placeholder="Add a book..."
         />
-        <button type="submit">Add</button>
+        <motion.button
+          type="submit"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Add
+        </motion.button>
       </form>
     </div>
   );
 };
+
 export default BookList;

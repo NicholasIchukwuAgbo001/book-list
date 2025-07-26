@@ -1,117 +1,269 @@
-
-body{
-    font-family: Tahoma;
-    color: #444;
-    letter-spacing: 1px;
+.wrapper {
+  width: 90%;
+  max-width: 960px;
+  margin: 20px auto;
+  border-radius: 6px;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  padding: 0 0 20px;
+  overflow: hidden;
+  border: 1px solid lightgray;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h1, h2{
-    font-weight: normal;
+.pageBanner {
+  background: #eee;
+  padding: 10px 0;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.wrapper{
-    width: 90%;
-    max-width: 960px;
-    margin: 20px auto;
-    border-radius: 6px;
-    box-shadow: 0px 1px 6px rgba(0,0,0,0.2);
-    box-sizing: border-box;
-    padding: 0 0 20px;
-    overflow: hidden;
-    border: 1px solid lightgray;
+.pageBanner h1,
+.pageBanner p {
+  margin: 10px 0;
 }
 
-.pageBanner{
-    background: #eee ;
-    padding: 10px 0;
-
+.pageBanner input {
+  width: 90%;
+  max-width: 300px;
+  margin: 20px auto;
+  display: block;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #444;
 }
 
-.pageBanner h1, .pageBanner p{
+.searchBooks input {
+  padding: 10px;
+  width: 60%;
+  max-width: 400px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 15px;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1e293b;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 15px;
+}
+
+
+.bookList {
+  margin: 30px;
+  margin-top: 30px;
+}
+
+.bookList ul {
+  list-style: none;
+  padding: 0;
+}
+
+.bookList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  transition: background 0.2s ease;
+}
+
+.bookList li:hover {
+  background: #e2e8f0;
+}
+
+.name {
+  font-size: 1rem;
+  color: #1f2937;
+  font-weight: bold;
+}
+
+
+.delete {
+  color: #dc2626;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.delete:hover {
+  background-color: #fee2e2;
+}
+
+.addBook {
+  margin-top: 30px;
+  display: flex;
+  gap: 10px;
+  max-width: 400px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.addBook input {
+  flex: 1;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.addBook button {
+  padding: 10px 16px;
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.addBook button:hover {
+  background-color: #1d4ed8;
+}
+
+@media screen and (max-width: 768px) {
+  .searchBooks input,
+  .addBook input {
     width: 100%;
-    text-align: center;
-    margin: 10px 0;
-}
+  }
 
-.pageBanner input{
-    width: 90%;
-    max-width: 300px;
-    margin: 20px auto;
-    display: block;
-    padding: 8px;
-    border: 1px solid #ddd;
+  .addBook {
+    flex-direction: column;
+  }
+
+  .bookList li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .delete {
+    margin-top: 8px;
+  }
+
+  .addBook input,
+  .addBook button {
+    width: 100%;
+    float: none;
     border-radius: 4px;
-    font-size: 16px;
-    color: #444;
+  }
+
+  .addBook button {
+    margin-top: -10px;
+    border-left: 1px solid #9361bf;
+  }
+
+  .bookList,
+  .addBook,
+  .tabbedContent {
+    margin: 20px;
+  }
+
+  .pageBanner input {
+    max-width: 100%;
+  }
 }
 
-.bookList, .addBook, .tabbedContent{
-    margin: 30px;
-}
+@media screen and (max-width: 480px) {
+  .wrapper {
+    margin: 10px;
+    padding: 10px 0;
+  }
 
-.bookList ul, .tabbedContent ul{
-    list-style-type: none;
-    padding: 0;
-}
+  .bookList li {
+    padding: 15px;
+    margin: 15px 5px;
+  }
 
-.bookList li{
-    padding: 20px;
-    border-left: 5px solid #ddd;
-    margin: 20px 10px;
-}
-
-.bookList li:hover{
-    border-color: #9361bf;
-}
-
-.delete{
-    float: right;
-    background: #9361bf;
-    padding: 6px;
-    border-radius: 4px;
-    cursor: pointer;
-    color: white;
-}
-
-.delete:hover{
-    background: #333;
-}
-
-.addBook{
-    width: 400px;
-    margin: 0 auto;
-}
-
-.addBook input{
-    display: block;
-    margin: 20px 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    border-radius: 4px 0 0 4px;
-    box-sizing: border-box;
-    width: 300px;
-    float: left;
-}
-
-.addBook button{
-    border: 1px solid #9361bf;
-    background: #9361bf;
-    padding: 10px 20px;
-    font-size: 16px;
+  .delete {
+    background-color: #111827;
+    float: none;
     display: inline-block;
-    margin: 0;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-    width: 100px;
-    float: left;
-    margin: 20px 0;
-    border-left: 0;
-    color: white;
+    margin-top: 10px;
+  }
+
+  .pageBanner h1 {
+    font-size: 22px;
+  }
+
+  .pageBanner p {
+    font-size: 14px;
+  }
+
+  .addBook{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    gap: 20px;
+    width: 80%;
+  }
+
+  .addBook input {
+    font-size: 15px;
+  }
+
+  .addBook button {
+    font-size: 15px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+  }
+  
 }
 
-.addBook:after{
-    content: '';
-    display: block;
-    clear: both;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  to {
+    opacity: 0;
+    height: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.bookItemEnter {
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+.bookItemExit {
+  animation: fadeOut 0.3s ease forwards;
 }
