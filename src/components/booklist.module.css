@@ -177,14 +177,17 @@ html, body {
 
   .bookList {
     margin: 20px;
-    padding-top: 120px;
+    padding-top: 70px;
   }
 }
 
 @media screen and (max-width: 480px) {
+    
   .pageBanner h1 {
     font-size: 22px;
   }
+
+  
 
  .addBook {
     display: flex;
@@ -193,13 +196,6 @@ html, body {
 
   .pageBanner p {
     font-size: 14px;
-  }
-
-  .bookList li {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 15px;
-    gap: 8px;
   }
 
   .delete {
